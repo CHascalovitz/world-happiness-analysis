@@ -1,0 +1,114 @@
+/* Body */
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: Gothic Medium;
+  padding: 20px;
+  background: #ffffff;
+}
+
+/* Header */
+.header {
+  padding: 30px;
+  text-align: center;
+  background: #e5c7c2;
+}
+
+.header h1 {
+  font-size: 50px;
+}
+
+/* Style top navigation bar */
+.topnav {
+  background-color: #bd8986;
+  text-align: center;
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+}
+
+/* Style topnav links */
+.topnav a {
+  float: none;
+  display: inline-block;
+  color: #5a1f00;
+  padding: 14px 16px;
+  text-decoration: none;
+  border-right: 1px solid rgb(84, 1, 1);
+}
+
+.topnav a:last-child {
+  border-right: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #f8d8d8;
+  color: black;
+}
+
+/* Create Columns */
+
+/* Left column */
+.leftcolumn {   
+  float: left;
+  width: 100%;
+}
+
+/* Right column */
+.rightcolumn {
+  float: left;
+  width: 100%;
+  background-color: #f1f1f1;
+  padding-left: 20px;
+}
+
+/* Add a card effect for articles */
+.card {
+  background-color: #e5c7c2;
+  padding: 20px 100px 20px 100px;
+  margin-top: 20px;
+}
+
+/*Add a card effect for images */
+.card a img {
+  width: 1000px;
+  width: 100%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #bd8986;
+  margin-top: 20px;
+  color: #7e1b1b ;
+}
+
+/* Responsive layout - when the screen is less than 800px wide */
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
+
+.rightcolumn {
+  width: 100%; /* Add this line to make the container take up full width */
+}
+
+/* Responsive layout - when the screen is less than 400px wide */
+@media screen and (max-width: 400px) {
+  .topnav a {
+    float: none;
+    width: 100%;
+  }
+}
