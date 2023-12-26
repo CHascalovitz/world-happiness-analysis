@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head> 
+    <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="path/to/lightbox.css">
+</head>
+<body>
+
+<div class="header">
+  <h1>WORLD HAPPINESS ANALYSIS</h1>
+</div>
+
+<div class="topnav">
+  <a href="index.html"><b>Home</b></a>
+  <a href="g10.html"><b>World Happiness in G10</b></a>
+  <a href="wealth.html"><b>World Happiness and Wealth</b></a>
+  <a href="mediators.html"><b>Happiness Mediators</b></a>
+  <a href="summary.html"><b>Summary</b></a>
+</div>
+
+<div class="row">
+    <div class="leftcolumn">
+        <div class="card">
+            <h2>Data Visualization</h2>
+            <br>
+            <--insert image here-->
+            <h4>About about about</h4></li>
+        </div>
+         <div class="card">
+           <h2>Data Analysis</h2>
+           <H4>About about about</H4>
+           <br>
+           <button onclick="toggleCodeSnippet1()">Python</button>
+
+           <code id="myCodeSnippet1" style="display: none;">
+       <-- insert python here -->
+           </code>
+           
+           <script>
+             function toggleCodeSnippet1() {
+               var codeSnippet = document.getElementById("myCodeSnippet1");
+               codeSnippet.style.display = codeSnippet.style.display === "none" ? "block" : "none";
+             }
+           </script>
+           <br>
+           <H4>About about about</H4>
+           <br>
+           <button onclick="toggleCodeSnippet2()">R Code</button>
+
+           <code id="myCodeSnippet2" style="display: none;">
+        <-- insert R here -->
+           </code>
+           
+           <script>
+             function toggleCodeSnippet2() {
+               var codeSnippet = document.getElementById("myCodeSnippet2");
+               codeSnippet.style.display = codeSnippet.style.display === "none" ? "block" : "none";
+             }
+           </script>
+           
+         </div>
+
+    </div>
+</div>
+
+<div class="footer">
+  <h3>Chen Hascalovitz | BSc, MPhil, PhDc | Data Analyst</h3>
+</div>
+
+<script src="path/to/lightbox.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      var image = document.getElementById("image");
+      image.addEventListener("click", function(event) {
+          event.preventDefault();
+          var newWindow = window.open(image.src, "_blank", "resizable=yes,width=800,height=600");
+          newWindow.focus();
+      });
+
+      lightbox.option({
+          'resizeDuration': 200,
+          'wrapAround': true
+      });
+  });
+</script>
+
+</body>
+</html>
+
