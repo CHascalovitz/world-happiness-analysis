@@ -35,7 +35,83 @@
            <button onclick="toggleCodeSnippet1()">Python</button>
 
            <code id="myCodeSnippet1" style="display: none;">
-       <-- insert python here -->
+            import matplotlib.pyplot as plt<br>
+            import pandas as pd<br>
+            import numpy as np<br>
+            import random<br>
+            import csv<br>
+            <br>
+            # Load data<br>
+            dataframe = pd.read_csv('./data/WHR_2019_Full.csv')<br>
+            <br>
+            dataframe = dataframe.dropna(subset=['Overall rank', 'Continent', 'Country or region', 'Score', 'GDP per capita', 'Social support',<br>
+                                                 'Healthy life expectancy', 'Freedom to make life choices', 'Generosity', 'Perceptions of corruption',<br>
+                                                 'Gini index'])<br>
+            <br>
+            overall = dataframe['Overall rank'].values<br>
+            continent = dataframe['Continent'].values<br>
+            country = dataframe['Country or region'].values<br>
+            score = dataframe['Score'].values<br>
+            gdp = dataframe['GDP per capita'].values<br>
+            social = dataframe['Social support'].values<br>
+            lifestyle = dataframe['Healthy life expectancy'].values<br>
+            freedom = dataframe['Freedom to make life choices'].values<br>
+            generosity = dataframe['Generosity'].values<br>
+            perception = dataframe['Perceptions of corruption'].values<br>
+            gini = dataframe['Gini index'].values<br>
+            <br>
+            # Create colour scheme<br>
+            color_map = {<br>
+                1: (1, 0.7849031270994535, 0.775031116112941),<br>
+                2: (1, 0.3847458156188478, 0.43663287647886184),<br>
+                3: (1, 0.3847458156188478, 0.63663287647886184),<br>
+                4: (1, 0.777822743459132, 0.99263085285513482),<br>
+                6: (1, 0.5847458156188478, 0.93663287647886184),<br>
+                7: (1, 0.7221745078773684, 0.37021499513356027)<br>
+            }<br>
+            <br>
+            def get_color(continent):<br>
+                return color_map.get(continent, 'gray')<br>
+            <br>
+            # Define data<br>
+            data = {'x': gini,<br>
+                    'c': np.arange(len(overall)),<br>
+                    's': gdp}<br>
+            data['y'] = score<br>
+            data['s'] = np.abs(data['s']) * len(overall)<br>
+            data['z'] = -0.04597 * gini + 7.316<br>
+            <br>
+            colours = [get_color(cont) for cont in continent]<br>
+            <br>
+            # Fit with polyfit<br>
+            b, m = np.polyfit(gini, score, 1)<br>
+            <br>
+            # Create the regression line<br>
+            line = --0.04699 * gini + 7.38486<br>
+            <br>
+            # Define G10 countries<br>
+            g10_countries = ['The United States', 'Japan', 'The Netherlands', 'The United Kingdom', 'France',<br>
+                             'Italy', 'Canada', 'Sweden', 'Germany', 'Belgium', 'Switzerland']<br>
+            <br>
+            # Plot Data<br>
+            plt.scatter(x='x', y='y', c=colours, s='s', edgecolors='black', linewidths=0.2, data=data)<br>
+            for i, txt in enumerate(country):<br>
+                if txt in g10_countries:<br>
+                    plt.text(gini[i], score[i], txt, fontsize=8, fontstyle='italic', ha='left', va='bottom')<br>
+            plt.plot(gini, line, '-', c=(1, 0.3847458156188478, 0.63663287647886184))<br>
+            plt.xlabel('Gini Index', fontweight='bold')<br>
+            plt.ylabel('World Happiness Score', fontweight='bold')<br>
+            plt.suptitle(r'Examining the Link Between National Inequality and Happiness', fontsize=14, fontweight='bold', y=0.93)<br>
+            plt.title(r'World Happiness Score vs. the Gini Index', fontsize=12, fontstyle='italic')<br>
+            <br>
+            # Create custom legend<br>
+            handles = [plt.Line2D([], [], marker='o', color=color_map[cont], linestyle='None') for cont in color_map]<br>
+            labels = ['Asia', 'Africa', 'North America', 'South America', 'Europe', 'Oceania']<br>
+            <br>
+            plt.legend(handles, labels, loc='best')<br>
+            <br>
+            plt.show()
+
            </code>
            
            <script>
@@ -50,7 +126,28 @@
            <button onclick="toggleCodeSnippet2()">R Code</button>
 
            <code id="myCodeSnippet2" style="display: none;">
-        <-- insert R here -->
+            > data <- read.csv("~/Desktop/Data Analyst/Git/world-happiness-analysis/data/WHR_2019_Full.csv")<br>
+            > reg_model <- lm(Score ~ Gini.index, data = data)<br>
+            > summary(reg_model)<br>
+            <br>
+            Call:<br>
+            lm(formula = Score ~ Gini.index, data = data)<br>
+            <br>
+            Residuals:<br>
+                 Min       1Q   Median       3Q      Max <br>
+            -2.53965 -0.69915 -0.01688  0.79610  2.04717 <br>
+            <br>
+            Coefficients:<br>
+                        Estimate Std. Error t value Pr(>|t|)    <br>
+            (Intercept)  7.38486    0.59328  12.447  < 2e-16 ***<br>
+            Gini.index  -0.04699    0.01625  -2.893  0.00473 ** <br>
+            ---<br>
+            Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1<br>
+            <br>
+            Residual standard error: 1.091 on 96 degrees of freedom<br>
+              (58 observations deleted due to missingness)<br>
+            Multiple R-squared:  0.08017,	Adjusted R-squared:  0.07059<br>
+            F-statistic: 8.367 on 1 and 96 DF,  p-value: 0.004727
            </code>
            
            <script>
