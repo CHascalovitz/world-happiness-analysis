@@ -35,7 +35,75 @@
            <button onclick="toggleCodeSnippet1()">Python</button>
 
            <code id="myCodeSnippet1" style="display: none;">
-       <-- insert python here -->
+            import matplotlib.pyplot as plt<br>
+            import pandas as pd<br>
+            import numpy as np<br>
+            import random<br>
+            <br>
+            # Load data<br>
+            dataframe = pd.read_csv('./data/WHR_2019_Full.csv')<br>
+            <br>
+            dataframe = dataframe.dropna(subset=['Overall rank', 'Continent', 'Country or region', 'Score', 'GDP per capita', 'Social support',<br>
+                                                 'Healthy life expectancy', 'Freedom to make life choices', 'Generosity', 'Perceptions of corruption',<br>
+                                                 'Gini index'])<br>
+            <br>
+            overall = dataframe['Overall rank'].values<br>
+            continent = dataframe['Continent'].values<br>
+            country = dataframe['Country or region'].values<br>
+            score = dataframe['Score'].values<br>
+            gdp = dataframe['GDP per capita'].values<br>
+            social = dataframe['Social support'].values<br>
+            lifestyle = dataframe['Healthy life expectancy'].values<br>
+            freedom = dataframe['Freedom to make life choices'].values<br>
+            generosity = dataframe['Generosity'].values<br>
+            perception = dataframe['Perceptions of corruption'].values<br>
+            gini = dataframe['Gini index'].values<br>
+            <br>
+            # Create colour scheme<br>
+            def random_colour():<br>
+                r = 1 <br>
+                g = random.uniform(0, 1)<br>
+                b = random.uniform(0, 1)<br>
+                return (r, g, b)<br>
+            <br>
+            colours = [random_colour() for _ in range(len(overall))] <br>
+            <br>
+            # Rename Countries<br>
+            dataframe['Country or region'] = dataframe['Country or region'].replace(<br>
+                {'The United States': 'The US'}<br>
+            )<br>
+            dataframe['Country or region'] = dataframe['Country or region'].replace(<br>
+                {'The United Kingdom': 'The UK'}<br>
+            )<br>
+            <br>
+            # Define G10 countries<br>
+            g10_countries = ['The US', 'Japan', 'The Netherlands', 'The UK', 'France',<br>
+                             'Italy', 'Canada', 'Sweden', 'Germany', 'Belgium', 'Switzerland']<br>
+            g10_data = dataframe[dataframe['Country or region'].isin(g10_countries)]<br>
+            <br>
+            # Calculate averages<br>
+            g10_average = np.mean(g10_data['Score'])<br>
+            global_average = np.mean(score)<br>
+            <br>
+            # Plot Data<br>
+            plt.bar(x=g10_data['Country or region'], height=g10_data['Score'], color=colours)<br>
+            plt.xlabel('G10 Countries', fontweight='bold')<br>
+            plt.ylabel('World Happiness Score', fontweight='bold')<br>
+            plt.suptitle(r'Examining Happiness in the G10 Countries', fontsize=14, fontweight='bold', y=0.94)<br>
+            plt.title(r'Happiness Score in G10 vs. Average World Happiness Score Globally', fontsize=12, fontstyle='italic')<br>
+            <br>
+            # Add average lines<br>
+            plt.axhline(y=g10_average, color=(1, 0.6221745078773684, 0.47021499513356027), linestyle='--', label='G10 Average')<br>
+            plt.axhline(y=global_average, color=(1, 0.3847458156188478, 0.63663287647886184), linestyle='--', label='Global Average')<br>
+            <br>
+            # Add "*" for siginificance<br>
+            plt.text(len(g10_countries)-1, g10_average, "*", color=(1, 0.6221745078773684, 0.47021499513356027), fontweight='bold', fontsize=12, ha='right', va='bottom')<br>
+            <br>
+            # Create custom legend<br>
+            plt.legend()<br>
+            <br>
+            plt.show()
+            
            </code>
            
            <script>
@@ -50,7 +118,23 @@
            <button onclick="toggleCodeSnippet2()">R Code</button>
 
            <code id="myCodeSnippet2" style="display: none;">
-        <-- insert R here -->
+            > data <- read.csv("~/Desktop/Data Analyst/Git/world-happiness-analysis/data/WHR_2019_Full.csv")<br>
+            > g10_countries <- c("The United States", "Japan", "The Netherlands", "The United Kingdom", "France", "Italy", "Canada", "Sweden", "Germany", "Belgium", "Switzerland")<br>
+            > global_avg <- mean(data$Score)<br>
+            > g10_data <- subset(data, Country.or.region %in% g10_countries)<br>
+            > t_test_result <- t.test(g10_data$Score, mu = global_avg)<br>
+            > print(t_test_result)<br>
+            <br>
+              One Sample t-test<br>
+            <br>
+            data:  g10_data$Score<br>
+            t = 9.8007, df = 10, p-value = 1.911e-06<br>
+            alternative hypothesis: true mean is not equal to 5.407096<br>
+            95 percent confidence interval:<br>
+             6.577734 7.266630<br>
+            sample estimates:<br>
+            mean of x <br>
+             6.922182 
            </code>
            
            <script>
