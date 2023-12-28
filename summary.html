@@ -2,7 +2,6 @@
 <html>
 <head> 
     <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="path/to/lightbox.css">
 </head>
 <body>
 
@@ -19,71 +18,38 @@
 </div>
 
 <div class="row">
-    <div class="leftcolumn">
-        <div class="card">
-            <h2>Data Visualization</h2>
-            <br>
-            <--insert image here-->
-            <h4>About about about</h4></li>
-        </div>
+      <div class="leftcolumn">
          <div class="card">
-           <h2>Data Analysis</h2>
-           <H4>About about about</H4>
+           <h2>About</h2>
+           <h4>About about about</h4>
+           </div>
+         <div class="card">
+           <h2>Data Source</h2>
            <br>
-           <button onclick="toggleCodeSnippet1()">Python</button>
-
-           <code id="myCodeSnippet1" style="display: none;">
-       <-- insert python here -->
-           </code>
-           
-           <script>
-             function toggleCodeSnippet1() {
-               var codeSnippet = document.getElementById("myCodeSnippet1");
-               codeSnippet.style.display = codeSnippet.style.display === "none" ? "block" : "none";
-             }
-           </script>
+           <H4>The dataset for the World Happiness Report was downloaded from <a href=https://www.kaggle.com/datasets/unsdsn/world-happiness/>Kaggle</a> and the dataset for the Gini Coefficient from <a href=https://databank.worldbank.org/metadataglossary/gender-statistics/series/SI.POV.GINI#:~:text=See%20the%20Poverty%20and%20Inequality,pip.worldbank.org).>The World Bank</a>.</H4>
+           <li>based on ...</li>
            <br>
-           <H4>About about about</H4>
+           <H4>The database includes data from 156 countries from 2019.</H4>
            <br>
-           <button onclick="toggleCodeSnippet2()">R Code</button>
-
-           <code id="myCodeSnippet2" style="display: none;">
-        <-- insert R here -->
-           </code>
-           
-           <script>
-             function toggleCodeSnippet2() {
-               var codeSnippet = document.getElementById("myCodeSnippet2");
-               codeSnippet.style.display = codeSnippet.style.display === "none" ? "block" : "none";
-             }
-           </script>
-           
+           <H4>There are eight datasets:</H4>
+           <li>World Happiness Score</li>
+           <li>GDP per Capita</li>
+           <li>Social Support</li>
+           <li>Healthy Life Expectancy</li>
+           <li>Freedom to Make Life Choices</li>
+           <li>Generosity</li>
+           <li>Perceptions of Corruption</li>
+           <li>Gini Coefficient</li>
+           <br>
+           <br>
          </div>
-
-    </div>
+      
+       </div>
 </div>
 
 <div class="footer">
   <h3>Chen Hascalovitz | BSc, MPhil, PhDc | Data Analyst</h3>
 </div>
 
-<script src="path/to/lightbox.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-      var image = document.getElementById("image");
-      image.addEventListener("click", function(event) {
-          event.preventDefault();
-          var newWindow = window.open(image.src, "_blank", "resizable=yes,width=800,height=600");
-          newWindow.focus();
-      });
-
-      lightbox.option({
-          'resizeDuration': 200,
-          'wrapAround': true
-      });
-  });
-</script>
-
 </body>
 </html>
-
