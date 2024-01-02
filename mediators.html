@@ -23,17 +23,66 @@
         <div class="card">
             <h2>Data Visualization</h2>
             <br>
-            <--insert image here-->
+            <a href="./img/whr_med.png" data-lightbox="image">
+              <img id="image" src='./img/whr_med.png'>
+          </a>
             <h4>About about about</h4></li>
         </div>
          <div class="card">
            <h2>Data Analysis</h2>
            <H4>About about about</H4>
-           <br>
-           <button onclick="toggleCodeSnippet1()">Python</button>
+           <br><img src='./img/med_gen.png' width="650"><br>
+           <button onclick="toggleCodeSnippet1()">Python [Generosity]</button>
 
            <code id="myCodeSnippet1" style="display: none;">
-       <-- insert python here -->
+            import pandas as pd<br>
+            import statsmodels.api as sm<br>
+            import statsmodels.formula.api as smf<br>
+            import numpy as np<br>
+            <br>
+            # Load data<br>
+            data = pd.read_csv('./data/WHR_2019_Full.csv')<br>
+            <br>
+            data = data.dropna(subset=['Overall rank', 'Continent', 'Country or region', 'Score', 'GDP per capita', 'Social support',<br>
+                                                 'Healthy life expectancy', 'Freedom to make life choices', 'Generosity', 'Perceptions of corruption',<br>
+                                                 'Gini index'])<br>
+            <br>
+            overall = data['Overall rank'].values<br>
+            continent = data['Continent'].values<br>
+            country = data['Country or region'].values<br>
+            score = data['Score'].values<br>
+            gdp = data['GDP per capita'].values<br>
+            social = data['Social support'].values<br>
+            lifestyle = data['Healthy life expectancy'].values<br>
+            freedom = data['Freedom to make life choices'].values<br>
+            generosity = data['Generosity'].values<br>
+            perception = data['Perceptions of corruption'].values<br>
+            gini = data['Gini index'].values<br>
+            <br>
+            model = smf.ols(formula='score ~ gini + generosity + gini:generosity', data=data)<br>
+            <br>
+            results = model.fit()<br>
+            print(results.summary())<br>
+            <br>
+            import matplotlib.pyplot as plt<br>
+            <br>
+            # Create dummy variables for social support (low & high)<br>
+            data['generosity_dummy'] = pd.get_dummies(data['Generosity']).iloc[:, 1]<br>
+            <br>
+            # Generate predicted values for different levels of social support<br>
+            pred_data = pd.DataFrame({'gini': data['Gini index'], 'generosity_dummy': data['generosity_dummy']})<br>
+            pred_data['predicted_happiness'] = results.predict(pred_data)<br>
+            <br>
+            # Scatter plot<br>
+            scatter = plt.scatter(gini, score, c=generosity, cmap='plasma', edgecolors='black', linewidths=0.2, s=75)<br>
+            plt.xlabel('Gini Index', fontweight='bold')<br>
+            plt.ylabel('World Happiness Score', fontweight='bold')<br>
+            plt.title('Mediating Effect of Generosity on Gini Index against Happiness', fontweight='bold')<br>
+            cbar = plt.colorbar(scatter)<br>
+            cbar.set_label('Generosity', fontweight='bold')<br>
+            plt.gca().invert_xaxis()<br>
+            <br>
+            plt.show()
            </code>
            
            <script>
@@ -44,11 +93,57 @@
            </script>
            <br>
            <H4>About about about</H4>
-           <br>
-           <button onclick="toggleCodeSnippet2()">R Code</button>
+           <br><img src='./img/med_soc.png' width="650"><br>
+           <button onclick="toggleCodeSnippet2()">Python [Social Support]</button>
 
            <code id="myCodeSnippet2" style="display: none;">
-        <-- insert R here -->
+            import pandas as pd<br>
+            import statsmodels.api as sm<br>
+            import statsmodels.formula.api as smf<br>
+            <br>
+            # Load data<br>
+            data = pd.read_csv('./data/WHR_2019_Full.csv')<br>
+            <br>
+            data = data.dropna(subset=['Overall rank', 'Continent', 'Country or region', 'Score', 'GDP per capita', 'Social support',<br>
+                                                 'Healthy life expectancy', 'Freedom to make life choices', 'Generosity', 'Perceptions of corruption',<br>
+                                                 'Gini index'])<br>
+            <br>
+            overall = data['Overall rank'].values<br>
+            continent = data['Continent'].values<br>
+            country = data['Country or region'].values<br>
+            score = data['Score'].values<br>
+            gdp = data['GDP per capita'].values<br>
+            social = data['Social support'].values<br>
+            lifestyle = data['Healthy life expectancy'].values<br>
+            freedom = data['Freedom to make life choices'].values<br>
+            generosity = data['Generosity'].values<br>
+            perception = data['Perceptions of corruption'].values<br>
+            gini = data['Gini index'].values<br>
+            <br>
+            model = smf.ols(formula='score ~ gini + social + gini:social', data=data)<br>
+            <br>
+            results = model.fit()<br>
+            print(results.summary())<br>
+            <br>
+            import matplotlib.pyplot as plt<br>
+            <br>
+            # Create dummy variables for social support (low & high)<br>
+            data['social_support_dummy'] = pd.get_dummies(data['Social support']).iloc[:, 1]<br>
+            <br>
+            # Generate predicted values for different levels of social support<br>
+            pred_data = pd.DataFrame({'gini': data['Gini index'], 'social_support_dummy': data['social_support_dummy']})<br>
+            pred_data['predicted_happiness'] = results.predict(pred_data)<br>
+            <br>
+            # Scatter plot<br>
+            scatter = plt.scatter(gini, score, c=social, cmap='plasma', edgecolors='black', linewidths=0.2, s=75)<br>
+            plt.xlabel('Gini Index', fontweight='bold')<br>
+            plt.ylabel('World Happiness Score', fontweight='bold')<br>
+            plt.title('Mediating Effect of Social Support on Gini Index against Happiness', fontweight='bold')<br>
+            cbar = plt.colorbar(scatter)<br>
+            cbar.set_label('Social Support', fontweight='bold')<br>
+            plt.gca().invert_xaxis()<br>
+            <br>
+            plt.show()
            </code>
            
            <script>
