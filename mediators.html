@@ -26,11 +26,20 @@
             <a href="./img/whr_med.png" data-lightbox="image">
               <img id="image" src='./img/whr_med.png'>
           </a>
-            <h4>About about about</h4></li>
+            <p>In this final analysis, I delved into the intricate dynamics between income inequality (measured by the Gini Index), World Happiness Score (WHS), and two potential mediators: generosity and social support. Although only generosity was plotted in the visual representation below, both factors were examined using Python's statistical modeling tools. The aim was to investigate whether the influence of income inequality on WHS varied depending on the levels of generosity and social support within nations. By unraveling these complexities, this analysis sheds light on the nuanced interplay between societal factors and subjective well-being, offering valuable insights for policymakers and researchers alike.</p>
+            <h4>Generosity as a Mediator:</h4>
+              <p><li>The OLS regression model revealed that both the Gini Index (p = 0.019) and generosity (p < 0.001) significantly influenced WHS.</li>
+              <li>The interaction term (gini:generosity) demonstrated a significant effect (p < 0.001), suggesting that the relationship between income inequality and WHS was moderated by generosity.</li></p>
+             <h4>Social Support as a Mediator:</h4>
+             <p><li>Similarly, the OLS regression model exploring the mediating role of social support unveiled significant associations between WHS, the Gini Index, and social support.</li>
+              <li>However, unlike generosity, the interaction term (gini:social) did not yield statistical significance (p = 0.719), indicating that social support may not mediate the relationship between income inequality and WHS as strongly.</li>
+             <br>
+              These findings underscore the multifaceted nature of societal well-being and underscore the importance of considering diverse factors when evaluating the impact of income inequality on happiness levels.
+             </p></li>
         </div>
          <div class="card">
            <h2>Data Analysis</h2>
-           <H4>About about about</H4>
+           <H4>Python was utilized to generate the plot and OLS output. Click the button below to unveil the Python code.</H4>
            <br><img src='./img/med_gen.png' width="650"><br>
            <button onclick="toggleCodeSnippet1()">Python [Generosity]</button>
 
@@ -92,7 +101,7 @@
              }
            </script>
            <br>
-           <H4>About about about</H4>
+           <H4>Python was utilized to generate the plot and OLS output. Click the button below to unveil the Python code.</H4>
            <br><img src='./img/med_soc.png' width="650"><br>
            <button onclick="toggleCodeSnippet2()">Python [Social Support]</button>
 
@@ -159,7 +168,7 @@
 </div>
 
 <div class="footer">
-  <h3>Chen Hascalovitz | BSc, MPhil, PhDc | Data Analyst</h3>
+  <h3>Chen Hascalovitz | BSc, MPhil, PhDc | Data Scientist</h3>
 </div>
 
 <script src="path/to/lightbox.js"></script>
