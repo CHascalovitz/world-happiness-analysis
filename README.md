@@ -2,6 +2,8 @@
 
 Welcome to the World Happiness Analysis project! This project explores global happiness trends using Python and R.
 
+[Link to IO](https://chascalovitz.github.io/world-happiness-analysis/)
+
 ## Overview
 
 The World Happiness Analysis project aims to understand factors contributing to happiness worldwide. We analyze data from the World Happiness Report to uncover insights about happiness levels across different countries.
